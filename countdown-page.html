@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Billie Eilish Concert Countdown</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #96D3E7;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: #0F766E;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        #countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .time-box {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .number {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .label {
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        h1 {
+            margin: 0 0 20px 0;
+            font-size: 32px;
+        }
+
+        #names {
+            font-size: 22px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        #date {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        #message {
+            font-size: 16px;
+            animation: pulse 2s infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @media (max-width: 480px) {
+            .number { font-size: 24px; }
+            .label { font-size: 12px; }
+            h1 { font-size: 24px; }
+            #names { font-size: 18px; }
+            #date { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Billie Eilish Concert</h1>
+        <div id="names">Get ready Alex & Tori!</div>
+        <div id="date">December 13, 2024 at 7:00 PM</div>
+        <div id="countdown">
+            <div class="time-box">
+                <div class="number" id="days">0</div>
+                <div class="label">days</div>
+            </div>
+            <div class="time-box">
+                <div class="number" id="hours">0</div>
+                <div class="label">hours</div>
+            </div>
+            <div class="time-box">
+                <div class="number" id="minutes">0</div>
+                <div class="label">minutes</div>
+            </div>
+            <div class="time-box">
+                <div class="number" id="seconds">0</div>
+                <div class="label">seconds</div>
+            </div>
+        </div>
+        <div id="message">Time to perfect those lyrics! 🎤✨</div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            var concertDate = new Date('2024-12-13T19:00:00');
+            var now = new Date();
+            var difference = concertDate - now;
+
+            if (difference > 0) {
+                var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
